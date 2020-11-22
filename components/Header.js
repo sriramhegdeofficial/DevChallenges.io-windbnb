@@ -4,7 +4,7 @@ const Header = (props) => {
     return(
         <React.Fragment>
             <header>
-                <img className="logo"src="/logo.png" alt="logo of windbnb" />
+                <img className="logo"src="/logo.svg" alt="logo of windbnb" />
             </header>
             <style jsx>{
                 `
@@ -20,6 +20,7 @@ const Header = (props) => {
                 .logo {
                     transform: translateY(-6.5%);
                     cursor: pointer;
+                    
                 }
                 
                 `

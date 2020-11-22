@@ -20,9 +20,15 @@ const SearchBox = (props) => {
         <React.Fragment>
             <div className="search__main__wrapper">
                 <div className="search__wrapper">
-                    <div className="search__location__wrapper"></div> 
-                    <div className="search__guest__wrapper"></div>
-                    <div className="search__icon__wrapper">
+                    <div className="search__location__guest__wrapper"> 
+                        <div className="search__location__wrapper">
+                                helsinki, finland
+                        </div> 
+                        <div className="search__guest__wrapper">
+                                Add guests
+                        </div>
+                    </div>
+                <div className="search__icon__wrapper">
                             <SearchIcon className={classes.searchIconStyle} />
                     </div>
                 </div>
@@ -48,18 +54,49 @@ const SearchBox = (props) => {
                         display: flex;
                     }
 
-                    .search__location__wrapper {
+                    .search__location__guest__wrapper {
                         flex: 1 1 auto;
-                        height: 100%;
-                        border-right: 1px solid rgba(242,242,242,1);
+                        display:flex;
+                        align-items: center;
                         
                     }
 
-                    .search__guest__wrapper {
-                        flex: 1 1 auto;
+                    .search__location__wrapper {
+                        
+                        width: 50%;
                         height: 100%;
                         border-right: 1px solid rgba(242,242,242,1);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        padding: 0px 6%;
+                        font-size: 0.875rem;
+                        font-family: 'Mulish', sans-serif;
+                        color: #333333;
+                        text-transform: capitalize;
+                        font-weight: 400;
+                    }
+
+                    .search__guest__wrapper {
                         
+                        width: 50%;
+                        height: 100%;
+                        border-right: 1px solid rgba(242,242,242,1);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        padding: 0px 6%;
+                        font-size: 0.875rem;
+                        font-family: 'Mulish', sans-serif;
+                        color: #BDBDBD;
+                        text-transform: capitalize;
+                        font-weight: 400;
                     }
 
                     .search__icon__wrapper {

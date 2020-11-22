@@ -5,7 +5,9 @@ const SearchBox = (props) => {
         <React.Fragment>
             <div className="search__main__wrapper">
                 <div className="search__wrapper">
-
+                    <div className="search__location__wrapper"></div> 
+                    <div className="search__guest__wrapper"></div>
+                    <div className="search__icon__wrapper"></div>
                 </div>
             </div>
             <style jsx>
@@ -27,6 +29,27 @@ const SearchBox = (props) => {
                         border-radius: 16px;
                         height: 65px;
                         border: 1px solid black;
+                        overflow: hidden;
+                        display: flex;
+                    }
+
+                    .search__location__wrapper {
+                        flex: 1 1 auto;
+                        height: 100%;
+                        border: 2px solid blue;
+                    }
+
+                    .search__guest__wrapper {
+                        flex: 1 1 auto;
+                        height: 100%;
+                        border: 2px solid green;
+                    }
+
+                    .search__icon__wrapper {
+                        min-width: 64px;
+                        width: 64px;
+                        height: 100%;
+                        border: 2px solid black;
                     }
                     
                     `

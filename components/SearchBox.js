@@ -46,8 +46,8 @@ const SearchBox = (props) => {
                     }
 
                     .search__icon__wrapper {
-                        min-width: 64px;
-                        width: 64px;
+                        min-width: 70px;
+                        width: 70px;
                         height: 100%;
                         border: 2px solid black;
                     }

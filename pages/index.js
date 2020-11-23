@@ -24,6 +24,10 @@ export default function Home() {
           <SearchBox inHeader={false} show={iPadPortrait ? false : true}/>
           <HotelStaysResult>
               <HotelCard />
+              <HotelCard />
+              <HotelCard />
+              <HotelCard />
+              
           </HotelStaysResult>
       </Layout>
     </React.Fragment>

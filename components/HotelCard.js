@@ -1,6 +1,7 @@
 import React from 'react';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import { makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 
 const useStyles = makeStyles({
@@ -15,6 +16,7 @@ const useStyles = makeStyles({
 
 const HotelCard = (props) => {
     const classes = useStyles();
+    var iPadPortrait = useMediaQuery('(min-width:760px)');
     return(
         <React.Fragment>
             <div className="container">
@@ -36,10 +38,11 @@ const HotelCard = (props) => {
                 `
 
                 .container {
-                    width: 100%;
+                    width:  ${ iPadPortrait ? '48%' : '100%'};
                     display: flex;
                     flex-direction: column;
                     margin-bottom: 30px;
+
                 }
                 
                 .hotel__image {

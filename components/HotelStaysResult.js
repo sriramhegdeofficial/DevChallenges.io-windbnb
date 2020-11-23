@@ -1,7 +1,11 @@
 import React from 'react';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 
 const HotelStaysResult = (props) => {
+
+    var iPadPortrait = useMediaQuery('(min-width:760px)');
+
     return(
         <React.Fragment>
             <div className="container">
@@ -9,7 +13,10 @@ const HotelStaysResult = (props) => {
                     <h3 className="title">Stays in Finland</h3>
                     <h5 className="stays__count">12+ stays</h5>
                 </div>
-                {props.children}
+                <div className="hotel__card_wrapper">
+                        {props.children}
+                </div>
+                
             </div>
             <style jsx>{
                 `
@@ -19,6 +26,14 @@ const HotelStaysResult = (props) => {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+                }
+
+                .hotel__card_wrapper {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: ${iPadPortrait ? 'row' : 'column'};
+                    flex-wrap: ${iPadPortrait ? 'wrap' : 'nowrap'};
+                    justify-content: ${iPadPortrait ? 'space-between' : 'normal'};
                 }
 
                 .title__wrapper {

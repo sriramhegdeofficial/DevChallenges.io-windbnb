@@ -42,7 +42,7 @@ const SearchBox = (props) => {
                         display: ${ props.show ? 'flex' : 'none'};
                         justify-content: center;
                         align-items: center;
-                        cursor: pointer;
+                        
                         
                     }
 

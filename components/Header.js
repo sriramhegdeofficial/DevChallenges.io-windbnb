@@ -1,10 +1,18 @@
 import React from 'react';
+import SearchBox from './SearchBox';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const Header = (props) => {
+
+     var iPadPortrait = useMediaQuery('(min-width:760px)');
+    
+    
+    
     return(
         <React.Fragment>
             <header>
                 <img className="logo"src="/logo.svg" alt="logo of windbnb" />
+                <SearchBox inHeader={true} show={ !iPadPortrait ? false : true}/>
             </header>
             <style jsx>{
                 `
@@ -14,7 +22,8 @@ const Header = (props) => {
                     height: 7%;
                     display: flex;
                     align-items: center;
-                    
+                    justify-content: space-between;
+                    padding: ${ iPadPortrait ? '15px 40px' : '0px'};
                 }
 
                 .logo {

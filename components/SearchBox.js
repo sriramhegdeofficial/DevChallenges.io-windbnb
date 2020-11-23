@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     searchIconStyle: {
         color: 'rgba(235,87,87,0.9)',
         width: '25px',
-        height: '25px',
+        height: '25px'
        
         
     }
@@ -37,15 +37,19 @@ const SearchBox = (props) => {
                 {
                     `
                     .search__main__wrapper {
-                        width: 100%;
-                        padding: 32px 15px; 
-                        display: flex;
+                        width: ${ props.inHeader ? 'auto' : '100%'};
+                        padding: ${props.inHeader ? '0px' : '32px 15px'}; 
+                        display: ${ props.show ? 'flex' : 'none'};
                         justify-content: center;
                         align-items: center;
+                        cursor: pointer;
+                        
                     }
 
                     .search__wrapper {
-                        width: 100%;
+                        min-width: ${ props.inHeader ? '0px' : '250px'};
+                        max-width:  ${ props.inHeader ? 'auto' : '400px'};
+                        width: ${ props.inHeader ? '380px' : '100%'};;
                         background: white;
                         box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
                         border-radius: 16px;
@@ -114,6 +118,8 @@ const SearchBox = (props) => {
                         color: #EB5757;
 
                     }
+
+                  
                     
                     `
                 }

@@ -82,6 +82,7 @@ const SearchBox = (props) => {
                         color: #333333;
                         text-transform: capitalize;
                         font-weight: 400;
+                        cursor: pointer;
                     }
 
                     .search__guest__wrapper {
@@ -101,6 +102,7 @@ const SearchBox = (props) => {
                         color: #BDBDBD;
                         text-transform: capitalize;
                         font-weight: 400;
+                        cursor: pointer;
                     }
 
                     .search__icon__wrapper {
@@ -110,6 +112,7 @@ const SearchBox = (props) => {
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        cursor: pointer;
                     }
 
                     .search__icon {

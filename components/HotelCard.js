@@ -17,6 +17,7 @@ const useStyles = makeStyles({
 const HotelCard = (props) => {
     const classes = useStyles();
     var iPadPortrait = useMediaQuery('(min-width:760px)');
+    var Desktop = useMediaQuery('(min-width:1200px)');
     return(
         <React.Fragment>
             <div className="container">
@@ -38,7 +39,7 @@ const HotelCard = (props) => {
                 `
 
                 .container {
-                    width:  ${ iPadPortrait ? '48%' : '100%'};
+                    width:  ${ iPadPortrait ? Desktop ? '30%' : '48%' : '100%'};
                     display: flex;
                     flex-direction: column;
                     margin-bottom: 30px;

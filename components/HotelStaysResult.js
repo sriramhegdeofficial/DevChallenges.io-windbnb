@@ -5,6 +5,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 const HotelStaysResult = (props) => {
 
     var iPadPortrait = useMediaQuery('(min-width:760px)');
+    
 
     return(
         <React.Fragment>

@@ -1,17 +1,51 @@
 import React from 'react';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+    '@global': {
+      '*::-webkit-scrollbar': {
+        width: '0.6rem'
+      },
+      '*::-webkit-scrollbar-track': {
+        
+        backgroundColor: 'rgba(0,0,0,0.09)'
+      },
+      '*::-webkit-scrollbar-thumb': {
+        borderRadius: '30px',
+        backgroundColor: 'rgba(235,87,87,0.7)'
+        
+        
+      }
+    },
+    container: {
+        width: '100%',
+        minHeight: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+  });
 
 export default function Layout({ children }) {
+
+    
+    const classes = useStyles();
+
+
     return (
         <React.Fragment>
-            <div className="container">{children}</div>
+            <div className={[classes.container, classes['@global']]}>
+                {children}
+            </div>
+            
         <style jsx>{`
 
-            .container {
-                width: 100%;
-                min-height: 100%;
-                padding: 0px 12px;
-            }
-    
+            
+
+            
+
     
         `}</style>
         </React.Fragment>

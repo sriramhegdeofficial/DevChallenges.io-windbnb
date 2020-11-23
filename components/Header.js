@@ -23,7 +23,8 @@ const Header = (props) => {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    padding: ${ iPadPortrait ? '15px 40px' : '0px'};
+                    padding-top: ${ iPadPortrait ? '18px' : '0px'};
+                    padding-bottom: ${ iPadPortrait ? '65px' : '0px'};
                 }
 
                 .logo {

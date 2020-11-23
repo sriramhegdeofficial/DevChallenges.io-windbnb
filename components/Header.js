@@ -12,7 +12,11 @@ const Header = (props) => {
         <React.Fragment>
             <header>
                 <img className="logo"src="/logo.svg" alt="logo of windbnb" />
-                <SearchBox inHeader={true} show={ !iPadPortrait ? false : true}/>
+                <SearchBox 
+                    inHeader={true} 
+                    show={ !iPadPortrait ? false : true}
+                    openDropDownSideBarToggler = {props.openDropDownSideBarToggler}
+                    />
             </header>
             <style jsx>{
                 `

@@ -33,7 +33,7 @@ const HotelCard = (props) => {
                        </div>
                        
                 </div>
-                <div className="hotel__special_description">Stylist apartment in center of the city</div>
+                <div className="hotel__special_description">Stylist apartment in center of the city </div>
             </div>
             <style jsx>{
                 `
@@ -110,6 +110,10 @@ const HotelCard = (props) => {
                     font-weight: 600;
                     font-size: 0.875rem;
                     color: #333333;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 80%;
                 }
                 
 

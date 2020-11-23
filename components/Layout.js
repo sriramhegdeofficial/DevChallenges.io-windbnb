@@ -9,7 +9,7 @@ const useStyles = makeStyles({
       },
       '*::-webkit-scrollbar-track': {
         
-        backgroundColor: 'rgba(0,0,0,0.09)'
+        backgroundColor: 'transparent'
       },
       '*::-webkit-scrollbar-thumb': {
         borderRadius: '30px',

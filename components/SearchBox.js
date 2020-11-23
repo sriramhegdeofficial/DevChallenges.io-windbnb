@@ -21,10 +21,15 @@ const SearchBox = (props) => {
             <div className="search__main__wrapper">
                 <div className="search__wrapper">
                     <div className="search__location__guest__wrapper"> 
-                        <div className="search__location__wrapper">
+                        <div 
+                        className="search__location__wrapper"
+                        onClick={props.openDropDownSideBarToggler}
+                         >
                                 helsinki, finland
                         </div> 
-                        <div className="search__guest__wrapper">
+                        <div 
+                        className="search__guest__wrapper"
+                        onClick={props.openDropDownSideBarToggler}>
                                 Add guests
                         </div>
                     </div>

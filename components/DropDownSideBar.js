@@ -3,6 +3,7 @@ import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchLocationResultCard from './SearchLocationResultCard';
 import SearchIcon from '@material-ui/icons/Search';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Picker from './Picker';
 
 
@@ -25,6 +26,7 @@ const useStyles = makeStyles({
   });
 
 const DropDownSideBar = (props) => {
+    var mobileLandscapeHeight = useMediaQuery('(max-height: 400px)');
     const classes = useStyles();
     const [toggleLocationSelector, setToggleLocationSelector ] = useState(false);
 
@@ -102,9 +104,9 @@ const DropDownSideBar = (props) => {
                     overflow: hidden;
                     display: flex;
                     flex-direction: column;
-                    
+                    overflow: ${mobileLandscapeHeight ? 'scroll' : 'auto'};
                    
-                    border: 1px solid black;
+                   
                 }
 
                 .title__wrapper {

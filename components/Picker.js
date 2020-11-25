@@ -30,13 +30,15 @@ const Picker = (props) => {
     return(
         <React.Fragment>
             <div className="container">
-                <button 
-                className="btn plus"
-                onClick={() => setPickerValueHandler('increment')}><AddIcon className={classes.iconStyle} /></button>
-                    <div className="picker__value">{pickerValue}</div>
+               
+                   
                 <button 
                 className="btn minus"
                 onClick={() => setPickerValueHandler('decrement')}><RemoveIcon className={classes.iconStyle} /></button>
+                         <div className="picker__value">{pickerValue}</div>
+                 <button 
+                className="btn plus"
+                onClick={() => setPickerValueHandler('increment')}><AddIcon className={classes.iconStyle} /></button>
             </div>
             <style jsx>
                 {

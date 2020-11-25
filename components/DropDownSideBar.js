@@ -102,7 +102,9 @@ const DropDownSideBar = (props) => {
                     overflow: hidden;
                     display: flex;
                     flex-direction: column;
-                    overflow: scroll;
+                    
+                   
+                    border: 1px solid black;
                 }
 
                 .title__wrapper {

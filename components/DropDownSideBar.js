@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchLocationResultCard from './SearchLocationResultCard';
 import SearchIcon from '@material-ui/icons/Search';
+import Picker from './Picker';
 
 
 const useStyles = makeStyles({
@@ -25,6 +26,16 @@ const useStyles = makeStyles({
 
 const DropDownSideBar = (props) => {
     const classes = useStyles();
+    const [toggleLocationSelector, setToggleLocationSelector ] = useState(false);
+
+    const locationToggleHandler = (value) => {
+        if(value === 'location') {
+            setToggleLocationSelector(true);
+        }else if(value === 'guest') {
+            setToggleLocationSelector(false);
+        }
+    }
+
     return(
         <React.Fragment>
             <div className="container">
@@ -35,7 +46,10 @@ const DropDownSideBar = (props) => {
                         onClick={props.openDropDownSideBarToggler}/>
                 </div>
                 <div className="search__location__guest__wrapper">
-                    <div className="search__item__wrapper search__location__wrapper">
+                    <div 
+                    className="search__item__wrapper search__location__wrapper"
+                    onClick={() => locationToggleHandler('location')}
+                    >
                         <h5 className="search__location__title">location</h5>
                         <h6 className="search__location__value">Helsinki, Finland</h6>
                     </div>
@@ -53,6 +67,19 @@ const DropDownSideBar = (props) => {
                     <SearchLocationResultCard />
                     <SearchLocationResultCard />
                     <SearchLocationResultCard />
+                </div>
+                <div className="guest__picker__wrapper">
+                    <div className="guest__adult_picker__wrapper">
+                        <h3 className="adult__picker__title">Adults</h3>
+                        <h4 className="adult__picker__age">Adults Ages 13 or above</h4>
+                        <Picker />
+                    </div>
+                    <div className="guest__children_picker__wrapper">
+                        <h3 className="children__picker__title">Children</h3>
+                        <h4 className="children__picker__age">Ages 2-12</h4>
+                        <Picker />
+                    </div>
+                   
                 </div>
                 <div className="search__button__wrapper">
                     <button className="search__button">
@@ -75,7 +102,7 @@ const DropDownSideBar = (props) => {
                     overflow: hidden;
                     display: flex;
                     flex-direction: column;
-
+                    overflow: scroll;
                 }
 
                 .title__wrapper {
@@ -100,15 +127,16 @@ const DropDownSideBar = (props) => {
                     flex-direction: column;
                     box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
                     border-radius: 16px;
-                    overflow: hidden;
+                    margin-bottom: 20px;
+                    
                     
                 }
 
                 .search__item__wrapper {
                     width: 100%;
-                    height: 57px;
+                    min-height: 57px;
                     bakcground: red;
-                    padding: 2.4% 8%;
+                    padding: 10px 20px;
                     display: flex;
                     justify-content: space-around;
                     align-items: flex-start;
@@ -165,7 +193,43 @@ const DropDownSideBar = (props) => {
                     flex: 1 1 auto;
                     max-height: 50%;
                     overflow-y: scroll;
+                    display: ${ toggleLocationSelector ? 'block' : 'none'}
                 }
+
+                .guest__picker__wrapper {
+                    width: 100%;
+                    padding: 0px 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    
+                }
+
+                .guest__adult_picker__wrapper, .guest__children_picker__wrapper  {
+                    margin-bottom: 35px;
+                }
+
+              
+                .adult__picker__title, .children__picker__title {
+                    font-family: 'Mulish', sans-serif;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 0.875rem;
+                    margin-bottom: 4px;
+                    color: #333333;
+                }
+
+                .adult__picker__age, .children__picker__age {
+                    opacity: 0.2;
+                    font-family: 'Mulish', sans-serif;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 0.875rem;
+                    color: #333333;
+                    margin-bottom: 10px;
+                }
+
+              
 
                 .search__button__wrapper {
                     width: 100%;

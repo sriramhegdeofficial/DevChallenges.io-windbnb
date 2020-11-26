@@ -17,9 +17,11 @@ const SearchLocationResultCard = (props) => {
     const classes = useStyles();
     return(
         <React.Fragment>
-            <div className="container">
+            <div 
+            className="container"
+            onClick={() => props.locationSelectedNameHandler(props.locationName)}>
                 <LocationOnIcon className={classes.locationIconStyle}/>
-                <h6 className="search__location__title">Helsinki, Finland</h6>
+                <h6 className="search__location__title">{props.locationName}</h6>
             </div>
             <style jsx>
                 {
@@ -30,7 +32,7 @@ const SearchLocationResultCard = (props) => {
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
-                        
+                        cursor: pointer;
                     }
 
                     .search__location__title {

@@ -16,17 +16,9 @@ const useStyles = makeStyles({
 
 const Picker = (props) => {
     const classes = useStyles();
-    const [pickerValue, setPickerValue] = useState(0);
+    
 
-    const setPickerValueHandler = (value) => {
-        if(value === 'increment') {
-            setPickerValue(pickerValue => pickerValue + 1);
-        }else if(value === 'decrement'){
-            if(pickerValue > 0) {
-                setPickerValue(pickerValue => pickerValue - 1);
-            }
-        }
-    } 
+    
     return(
         <React.Fragment>
             <div className="container">
@@ -34,11 +26,21 @@ const Picker = (props) => {
                    
                 <button 
                 className="btn minus"
-                onClick={() => setPickerValueHandler('decrement')}><RemoveIcon className={classes.iconStyle} /></button>
-                         <div className="picker__value">{pickerValue}</div>
+                onClick={() => {
+                    
+                    props.setPickerValue(props.pickerType, 'minus');
+                    console.log(`${props.pickerType}, minus`);
+                    console.log(`Adult : ${props.adultPickerValue}, child: ${props.childrenPickerValue}`);
+                
+                }}><RemoveIcon className={classes.iconStyle} /></button>
+                         <div className="picker__value">{props.pickerType === 'adult' ? `${props.adultPickerValue}` : `${props.childrenPickerValue}`} </div>
                  <button 
                 className="btn plus"
-                onClick={() => setPickerValueHandler('increment')}><AddIcon className={classes.iconStyle} /></button>
+                onClick={() => {
+                    props.setPickerValue(props.pickerType, 'plus');
+                    console.log(`${props.pickerType}, plus`);
+                    console.log(`Adult : ${props.adultPickerValue}, child: ${props.childrenPickerValue}`);
+                }}><AddIcon className={classes.iconStyle} /></button>
             </div>
             <style jsx>
                 {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Layout from './../components/Layout';
 import Header from './../components/Header';
@@ -8,25 +8,76 @@ import HotelStaysResult from '../components/HotelStaysResult';
 import HotelCard from '../components/HotelCard';
 import DropDownSideBar from '../components/DropDownSideBar';
 
+
 export default function Index() {
+
+ 
 
   var iPadPortrait = useMediaQuery('(min-width:760px)');
   var DesktopLarge = useMediaQuery('(min-width:1900px)');
   var DesktopMedium = useMediaQuery('(min-width: 1200px)');
+  
 
   const [isDropDownSideBarOpen, setisDropDownSideBarOpen] = useState(false);
+  const [locationSelectedName, setLocationSelectedName] = useState('Helsinki, Finland');
+  const [totalGuests, setTotalGuests] = useState(0);
+  const [adultPickerValue, setAdultPickerValue] = useState(0);
+  const [childrenPickerValue, setChildrenPickerValue] = useState(0);
+
+  useEffect(() => {
+
+    setTotalGuests(adultPickerValue + childrenPickerValue);
+    
+  }, [adultPickerValue, childrenPickerValue]);
 
   const openDropDownSideBarToggler = () => {
      if(isDropDownSideBarOpen === true) {
       
-       setisDropDownSideBarOpen(false);
-       document.body.style.overflow = 'unset';
+          setisDropDownSideBarOpen(false);
+          document.body.style.position = 'static';
+          document.body.style.overflowY = 'auto';
      }else {
-      setisDropDownSideBarOpen(true);
-      document.body.style.overflow = 'hidden';
+        setisDropDownSideBarOpen(true);
+        document.body.style.position = 'fixed';
+        document.body.style.overflowY = 'scroll';
      }
   }
 
+
+  const locationSelectedNameHandler = (value) => {
+     if( value === locationSelectedName) {
+       return ;
+     }else {
+      setLocationSelectedName(value);
+     }
+      
+  }
+
+  const totalGuestsHandler = () => {
+      setTotalGuests(adultPickerValue + childrenPickerValue);
+  }
+
+  const setPickerValue = (value, value2) => {
+    if(value === 'adult') {
+      if(value2 === 'plus') {
+        setAdultPickerValue(adultPickerValue => adultPickerValue + 1);
+      }else if(value2 === 'minus') {
+        if(adultPickerValue > 0) {
+          setAdultPickerValue(adultPickerValue => adultPickerValue - 1);
+        }
+      }
+    }
+    else if(value === 'children') {
+      if(value2 === 'plus') {
+        setChildrenPickerValue(childrenPickerValue => childrenPickerValue + 1);
+      }else if(value2 === 'minus'){
+        if(childrenPickerValue > 0) {
+          setChildrenPickerValue(childrenPickerValue => childrenPickerValue - 1);
+        }
+      }
+    }
+  }
+  
   
   return (
     <React.Fragment>
@@ -40,7 +91,15 @@ export default function Index() {
           <div className="content__container">
                 <DropDownSideBar 
                 openDropDownSideBarToggler = {openDropDownSideBarToggler}
-                isOpen={isDropDownSideBarOpen}/>
+                locationSelectedName={locationSelectedName}
+                isOpen={isDropDownSideBarOpen}
+                locationSelectedNameHandler={locationSelectedNameHandler}
+                totalGuestsHandler={totalGuestsHandler}
+                totalGuests={totalGuests}
+                adultPickerValue={adultPickerValue}
+                childrenPickerValue={childrenPickerValue}
+                setPickerValue={setPickerValue}
+                />
                 
 
                 
@@ -73,7 +132,7 @@ export default function Index() {
           
           .content__container {
             width: 100%;
-            max-width: ${ DesktopLarge ? '1800px' : '100%'};
+            min-width: 280px;
             min-height: 100%;
             padding: ${iPadPortrait ? '0px 7%' : '0px 12px'} ;
             position: relative;

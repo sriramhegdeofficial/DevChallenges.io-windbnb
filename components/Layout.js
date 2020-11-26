@@ -24,7 +24,8 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        
     }
   });
 
@@ -36,7 +37,7 @@ export default function Layout({ children }) {
 
     return (
         <React.Fragment>
-            <div className={[classes.container, classes['@global']]}>
+            <div className={`${classes.container} ${classes['@global']}`}>
                 {children}
             </div>
             

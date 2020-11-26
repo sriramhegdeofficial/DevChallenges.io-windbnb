@@ -26,10 +26,11 @@ const SearchLocationResultCard = (props) => {
                     `
                     .container {
                         width: 100%;
-                        padding: 13px 7.5%;
+                        padding-bottom: 24px;
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
+                        
                     }
 
                     .search__location__title {

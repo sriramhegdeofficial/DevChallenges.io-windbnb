@@ -12,6 +12,8 @@ import stays from './../stays.json';
 
 export default function Index() {
 
+  
+
   const initialStaysList = (stay) => {
     return stay.city === 'Helsinki' && stay.country === 'Finland';
   }
@@ -134,13 +136,16 @@ export default function Index() {
                 <Header  
                 openDropDownSideBarToggler = {openDropDownSideBarToggler}
                 locationToggleHandler={locationToggleHandler}
+                totalGuests={totalGuests}
+                locationSelectedName={locationSelectedName}
                 />
 
                 <SearchBoxSm 
                      inHeader={false} 
                      openDropDownSideBarToggler = {openDropDownSideBarToggler}
                      locationToggleHandler={locationToggleHandler}
-                     
+                     totalGuests={totalGuests}
+                     locationSelectedName={locationSelectedName}
                      />
                 <HotelStaysResult staysCount={initialStays.length}>
                   

@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 const DropDownSideBarMobile = (props) => {
 
   
-    
+    const uniqueStays = [];
   
     
     
@@ -37,7 +37,7 @@ const DropDownSideBarMobile = (props) => {
     const classes = useStyles();
    
   
-    const uniqueStays = [];
+    
    
 
     return(
@@ -106,7 +106,11 @@ const DropDownSideBarMobile = (props) => {
                 </div>
                 <div className="search__button__wrapper">
                     <button 
-                    onClick={() => props.staysSearchHandler(props.locationSelectedName, props.totalGuests)}
+                    onClick={() => {
+                        props.staysSearchHandler(props.locationSelectedName, props.totalGuests);
+                        props.openDropDownSideBarToggler();
+                    
+                    }}
                     className="search__button"
                     >
                         <SearchIcon className={classes.searchIconStyle}/>Search

@@ -3,6 +3,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import { makeStyles } from '@material-ui/core/styles';
 
+
 const useStyles = makeStyles({
     searchIconStyle: {
         color: 'rgba(235,87,87,0.9)',
@@ -29,14 +30,14 @@ const SearchBox = (props) => {
                             }
                         }
                          >
-                                helsinki, finland
+                                {`${props.locationSelectedName},\u00A0 Finland`}
                         </div> 
                         <div 
                         className="search__guest__wrapper"
                         onClick={() => {
                             props.openDropDownSideBarToggler()
                             props.locationToggleHandler('guest')}}>
-                                Add guests
+                                { props.totalGuests === 0 ? 'Add guests' : props.totalGuests === 1 ? `${props.totalGuests} guest` :`${props.totalGuests} guests`}
                         </div>
                     </div>
                 <div className="search__icon__wrapper">

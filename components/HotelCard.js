@@ -127,17 +127,17 @@ const HotelCard = (props) => {
 
                 @media only screen and (min-width: 760px) {
                     .container {
-                        width:  48%
-                        
+                        max-width:  48%;
+                        margin-bottom: 30px;
     
                     }
                   }
 
                   @media only screen and (min-width: 1200px) {
                     .container {
-                        width:  30%
+                        max-width: 30%;
+                        margin-bottom: 30px;
                         
-    
                     }
                   }
                 

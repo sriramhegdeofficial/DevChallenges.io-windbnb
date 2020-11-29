@@ -4,7 +4,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const HotelStaysResult = (props) => {
 
-    var iPadPortrait = useMediaQuery('(min-width:760px)');
+    
     
 
     return(
@@ -32,9 +32,9 @@ const HotelStaysResult = (props) => {
                 .hotel__card_wrapper {
                     width: 100%;
                     display: flex;
-                    flex-direction: ${iPadPortrait ? 'row' : 'column'};
-                    flex-wrap: ${iPadPortrait ? 'wrap' : 'nowrap'};
-                    justify-content: ${iPadPortrait ? 'space-between' : 'normal'};
+                    flex-direction: column;
+                    flex-wrap: nowrap;
+                    
                 }
 
                 .title__wrapper {
@@ -61,6 +61,32 @@ const HotelStaysResult = (props) => {
                     font-size: 0.875rem;
                     color: #4F4F4F;
                 }
+
+                @media only screen and (min-width:760px) {
+
+                    .hotel__card_wrapper {
+                   
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                }
+ 
+                }
+
+                @media only screen and (min-width:1200px) { 
+
+                    
+                    .hotel__card_wrapper {
+                        flex-wrap: wrap;
+                        
+                    }
+
+
+                }
+
+
+
+
                 
                 
                 `

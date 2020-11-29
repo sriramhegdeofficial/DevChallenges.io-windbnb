@@ -21,7 +21,7 @@ const SearchLocationResultCard = (props) => {
             className="container"
             onClick={() => props.locationSelectedNameHandler(props.locationName)}>
                 <LocationOnIcon className={classes.locationIconStyle}/>
-                <h6 className="search__location__title">{props.locationName}</h6>
+                <h6 className="search__location__title">{`${props.locationName},\u00A0 Finland`}</h6>
             </div>
             <style jsx>
                 {

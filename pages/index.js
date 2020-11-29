@@ -17,11 +17,16 @@ export default function Index() {
   }
  
 
-
+ const staysSearchHandler = (location, numberOfGuests = 0) => {
+    const searchResult = stays.filter((stay) => {
+      return stay.city === location && stay.maxGuests > numberOfGuests
+    });
+    setInitialStays(searchResult);
+ } 
   
 
   const [isDropDownSideBarOpen, setisDropDownSideBarOpen] = useState(false);
-  const [locationSelectedName, setLocationSelectedName] = useState('Helsinki, Finland');
+  const [locationSelectedName, setLocationSelectedName] = useState('Helsinki');
   const [totalGuests, setTotalGuests] = useState(0);
   const [adultPickerValue, setAdultPickerValue] = useState(0);
   const [childrenPickerValue, setChildrenPickerValue] = useState(0);
@@ -32,6 +37,8 @@ export default function Index() {
 
     setTotalGuests(adultPickerValue + childrenPickerValue);
     console.log(`dropdownValue : ${isDropDownSideBarOpen}`);
+
+
     
   }, [adultPickerValue, childrenPickerValue, isDropDownSideBarOpen]);
 
@@ -115,6 +122,7 @@ export default function Index() {
                 setPickerValue={setPickerValue}
                 locationToggleHandler={locationToggleHandler}
                 toggleLocationSelector={toggleLocationSelector}
+                staysSearchHandler={staysSearchHandler}
                 />
                 
 

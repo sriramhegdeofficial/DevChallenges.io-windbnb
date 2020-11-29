@@ -3,9 +3,8 @@ import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchLocationResultCard from './SearchLocationResultCard';
 import SearchIcon from '@material-ui/icons/Search';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Picker from './Picker';
-
+import stays from './../stays.json';
 
 const useStyles = makeStyles({
     closeIconStyle: {
@@ -24,18 +23,21 @@ const useStyles = makeStyles({
         
     }
   });
+  
 
 const DropDownSideBarMobile = (props) => {
 
   
     
+  
     
-    var mobileLandscapeHeight = useMediaQuery('(max-height: 400px)');
+    
     
 
     const classes = useStyles();
    
-
+  
+    const uniqueStays = [];
    
 
     return(
@@ -54,7 +56,7 @@ const DropDownSideBarMobile = (props) => {
                     onClick={() => props.locationToggleHandler('location')}
                     >
                         <h5 className="search__location__title">location</h5>
-                        <h6 className="search__location__value">{props.locationSelectedName}</h6>
+                        <h6 className="search__location__value">{`${props.locationSelectedName},\u00A0 Finland`}</h6>
                     </div>
                     <div 
                         className="search__item__wrapper search__guest__wrapper"
@@ -64,18 +66,24 @@ const DropDownSideBarMobile = (props) => {
                     </div>
                 </div>
                 <div className="search__location__cards__wrapper">
-                    <SearchLocationResultCard 
-                    locationName="Helsinki, Finland"
-                    locationSelectedNameHandler={props.locationSelectedNameHandler}/>
-                    <SearchLocationResultCard 
-                    locationName="Helsinki, Finland"
-                    locationSelectedNameHandler={props.locationSelectedNameHandler}/>
-                    <SearchLocationResultCard 
-                    locationName="Oulu, Finland"
-                    locationSelectedNameHandler={props.locationSelectedNameHandler}/>
-                    <SearchLocationResultCard 
-                    locationName="Oulu, Finland"
-                    locationSelectedNameHandler={props.locationSelectedNameHandler}/>
+                   
+                {
+                    stays.map(stay => {
+                        if(!uniqueStays.includes(stay.city)) {
+                            uniqueStays.push(stay.city);
+                            return (
+                                <SearchLocationResultCard 
+                                key={JSON.stringify(stay)}
+                                locationName={`${stay.city}`}
+                               locationSelectedNameHandler={props.locationSelectedNameHandler}/>
+                            )
+            
+                        }
+                      
+                    })
+                }    
+               
+                    
           
                     
                 </div>
@@ -97,7 +105,10 @@ const DropDownSideBarMobile = (props) => {
                    
                 </div>
                 <div className="search__button__wrapper">
-                    <button className="search__button">
+                    <button 
+                    onClick={() => props.staysSearchHandler(props.locationSelectedName, props.totalGuests)}
+                    className="search__button"
+                    >
                         <SearchIcon className={classes.searchIconStyle}/>Search
                     </button>
                 </div>
@@ -116,7 +127,7 @@ const DropDownSideBarMobile = (props) => {
                     padding: 13px;
                     display: flex;
                     flex-direction: column;
-                    overflow: ${mobileLandscapeHeight ? 'scroll' : 'auto'};
+                    overflow: auto;
                     -ms-overflow-style: none;  /* IE and Edge */
                     scrollbar-width: none;  /* Firefox */
                    
@@ -288,6 +299,17 @@ const DropDownSideBarMobile = (props) => {
                     font-size: 0.875rem;
                     color: #F2F2F2;
                     text-transform: capitalize;
+                }
+
+                @media only screen and (max-height: 400px) {
+
+                    .container {
+                    
+                    overflow: scroll;
+                
+                   
+                }
+         
                 }
                 
                 

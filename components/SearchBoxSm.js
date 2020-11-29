@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   });
 
 
-const SearchBox = (props) => {
+const SearchBoxSm = (props) => {
     const classes = useStyles();
     return (
         <React.Fragment>
@@ -48,11 +48,12 @@ const SearchBox = (props) => {
                 {
                     `
                     .search__main__wrapper {
+                        display: flex;
                         width: ${ props.inHeader ? 'auto' : '100%'};
                         padding: ${props.inHeader ? '0px' : '32px 15px'}; 
                         justify-content: center;
                         align-items: center;
-                        display: none;
+                        
                         
                     }
 
@@ -136,7 +137,7 @@ const SearchBox = (props) => {
                      
                         .search__main__wrapper {
                           
-                            display: flex;
+                            display: none;
                             
                             
                             
@@ -152,4 +153,4 @@ const SearchBox = (props) => {
     )
 }
 
-export default SearchBox;
+export default SearchBoxSm;

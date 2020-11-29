@@ -34,15 +34,9 @@ const DropDownSideBarMobile = (props) => {
     
 
     const classes = useStyles();
-    const [toggleLocationSelector, setToggleLocationSelector ] = useState(true);
+   
 
-    const locationToggleHandler = (value) => {
-        if(value === 'location') {
-            setToggleLocationSelector(true);
-        }else if(value === 'guest') {
-            setToggleLocationSelector(false);
-        }
-    }
+   
 
     return(
         <React.Fragment>
@@ -57,14 +51,14 @@ const DropDownSideBarMobile = (props) => {
                 <div className="search__location__guest__wrapper">
                     <div 
                     className="search__item__wrapper search__location__wrapper"
-                    onClick={() => locationToggleHandler('location')}
+                    onClick={() => props.locationToggleHandler('location')}
                     >
                         <h5 className="search__location__title">location</h5>
                         <h6 className="search__location__value">{props.locationSelectedName}</h6>
                     </div>
                     <div 
                         className="search__item__wrapper search__guest__wrapper"
-                        onClick={() => locationToggleHandler('guest')}>
+                        onClick={() => props.locationToggleHandler('guest')}>
                             <h5 className="search__guest__title">guests</h5>
     <h6 className="search__guest__value">{ props.totalGuests === 0 ? 'Add guests' : props.totalGuests === 1 ? `${props.totalGuests} guest` :`${props.totalGuests} guests`}</h6>
                     </div>
@@ -222,7 +216,7 @@ const DropDownSideBarMobile = (props) => {
                     min-height: 200px;
                     height: 50%;
                     overflow-y: scroll;
-                    display: ${ toggleLocationSelector ? 'block' : 'none'};
+                    display: ${ props.toggleLocationSelector ? 'block' : 'none'};
                     -ms-overflow-style: none;  /* IE and Edge */
                     scrollbar-width: none;  /* Firefox */
                 }
@@ -236,7 +230,7 @@ const DropDownSideBarMobile = (props) => {
                 .guest__picker__wrapper {
                     width: 100%;
                     padding: 0px 20px;
-                    display: ${ !toggleLocationSelector ? 'flex' : 'none'};
+                    display: ${ !props.toggleLocationSelector ? 'flex' : 'none'};
                     flex-direction: column;
                     align-items: flex-start;
                     overflow: scroll;

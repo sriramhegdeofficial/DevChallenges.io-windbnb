@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import { makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 
 
 const useStyles = makeStyles({
@@ -14,32 +15,39 @@ const useStyles = makeStyles({
     }
   });
 
+
+
+  
+
 const HotelCard = (props) => {
     const classes = useStyles();
-    var iPadPortrait = useMediaQuery('(min-width:760px)');
-    var Desktop = useMediaQuery('(min-width:1200px)');
+    
+
+
+
+    
     return(
         <React.Fragment>
             <div className="container">
-                <img className="hotel__image" src="https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=2255&q=80" alt="image of hotel" />
+                <img className="hotel__image" src={props.hotelCard.photo} alt="image of hotel" />
                 <div className="hotel__info__wrapper">
                        <div className="super__host__tag">Super host</div> 
                        <div className="hotel__meta__info">
-                            Entire apartment . 2 beds
+                            {props.hotelCard.type}  {props.hotelCard.beds !== null ? props.hotelCard.beds === 1 ? `. ${props.hotelCard.beds} bed` : `. ${props.hotelCard.beds} beds` : ``}
                        </div>
                        <div className="hotel__ratings__wrapper">
                             <StarRoundedIcon className={classes.starIconStyle} />
-                            <div className="rating__value">4.40</div>
+                            <div className="rating__value">{props.hotelCard.rating}</div>
                        </div>
                        
                 </div>
-                <div className="hotel__special_description">Stylist apartment in center of the city </div>
+                <div className="hotel__special_description">{props.hotelCard.title}</div>
             </div>
             <style jsx>{
                 `
 
                 .container {
-                    width:  ${ iPadPortrait ? Desktop ? '30%' : '48%' : '100%'};
+                    width:  100%;
                     display: flex;
                     flex-direction: column;
                     margin-bottom: 30px;
@@ -73,6 +81,7 @@ const HotelCard = (props) => {
                     font-style: normal;
                     font-weight: bold;
                     padding: 6px 9px;
+                    display: ${props.hotelCard.superHost ? 'flex' : 'none'};
 
                 }
 
@@ -83,7 +92,7 @@ const HotelCard = (props) => {
                     font-weight: 500;
                     font-size: 0.75rem;
                     color: #828282;
-                    padding: 0px 8px;
+                    padding: ${props.hotelCard.superHost ? '0px 8px' : '0px'};
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -115,6 +124,22 @@ const HotelCard = (props) => {
                     text-overflow: ellipsis;
                     max-width: 80%;
                 }
+
+                @media only screen and (min-width: 760px) {
+                    .container {
+                        width:  48%
+                        
+    
+                    }
+                  }
+
+                  @media only screen and (min-width: 1200px) {
+                    .container {
+                        width:  30%
+                        
+    
+                    }
+                  }
                 
 
                 

@@ -12,7 +12,7 @@ const HotelStaysResult = (props) => {
             <div className="container">
                 <div className="title__wrapper">
                     <h3 className="title">Stays in Finland</h3>
-                    <h5 className="stays__count">12+ stays</h5>
+                    <h5 className="stays__count">{props.staysCount > 0 ?  props.staysCount === 1 ? `${props.staysCount} stay` : `${props.staysCount} stays` : ``  }</h5>
                 </div>
                 <div className="hotel__card_wrapper">
                         {props.children}

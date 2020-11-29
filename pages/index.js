@@ -2,20 +2,22 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Layout from './../components/Layout';
 import Header from './../components/Header';
-import SearchBox from '../components/SearchBox';
+import SearchBoxSm from '../components/SearchBoxSm';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import HotelStaysResult from '../components/HotelStaysResult';
 import HotelCard from '../components/HotelCard';
 import DropDownSideBar from '../components/DropDownSideBar';
+import stays from './../stays.json';
 
 
 export default function Index() {
 
+  const initialStaysList = (stay) => {
+    return stay.city === 'Helsinki' && stay.country === 'Finland';
+  }
  
 
-  var iPadPortrait = useMediaQuery('(min-width:760px)');
-  var DesktopLarge = useMediaQuery('(min-width:1900px)');
-  var DesktopMedium = useMediaQuery('(min-width: 1200px)');
+
   
 
   const [isDropDownSideBarOpen, setisDropDownSideBarOpen] = useState(false);
@@ -23,21 +25,25 @@ export default function Index() {
   const [totalGuests, setTotalGuests] = useState(0);
   const [adultPickerValue, setAdultPickerValue] = useState(0);
   const [childrenPickerValue, setChildrenPickerValue] = useState(0);
+  const [toggleLocationSelector, setToggleLocationSelector ] = useState(true);
+  const [initialStays, setInitialStays] = useState(stays.filter(initialStaysList));
 
   useEffect(() => {
 
     setTotalGuests(adultPickerValue + childrenPickerValue);
+    console.log(`dropdownValue : ${isDropDownSideBarOpen}`);
     
-  }, [adultPickerValue, childrenPickerValue]);
+  }, [adultPickerValue, childrenPickerValue, isDropDownSideBarOpen]);
 
   const openDropDownSideBarToggler = () => {
      if(isDropDownSideBarOpen === true) {
-      
+          
           setisDropDownSideBarOpen(false);
           document.body.style.position = 'static';
           document.body.style.overflowY = 'auto';
      }else {
         setisDropDownSideBarOpen(true);
+        
         document.body.style.position = 'fixed';
         document.body.style.overflowY = 'scroll';
      }
@@ -77,6 +83,14 @@ export default function Index() {
       }
     }
   }
+
+  const locationToggleHandler = (value) => {
+    if(value === 'location') {
+        setToggleLocationSelector(true);
+    }else if(value === 'guest') {
+        setToggleLocationSelector(false);
+    }
+}
   
   
   return (
@@ -99,6 +113,8 @@ export default function Index() {
                 adultPickerValue={adultPickerValue}
                 childrenPickerValue={childrenPickerValue}
                 setPickerValue={setPickerValue}
+                locationToggleHandler={locationToggleHandler}
+                toggleLocationSelector={toggleLocationSelector}
                 />
                 
 
@@ -109,21 +125,25 @@ export default function Index() {
                 
                 <Header  
                 openDropDownSideBarToggler = {openDropDownSideBarToggler}
+                locationToggleHandler={locationToggleHandler}
                 />
 
-                <SearchBox 
+                <SearchBoxSm 
                      inHeader={false} 
-                     show={iPadPortrait ? false : true}
                      openDropDownSideBarToggler = {openDropDownSideBarToggler}
+                     locationToggleHandler={locationToggleHandler}
                      
                      />
-                <HotelStaysResult>
-                    <HotelCard />
-                    <HotelCard />
-                    <HotelCard />
-                    <HotelCard />
-                    <HotelCard />
-                    <HotelCard />
+                <HotelStaysResult staysCount={initialStays.length}>
+                  
+                 {
+                    initialStays.map((hotelCard) => {
+                      return <HotelCard key={JSON.stringify(hotelCard)} hotelCard={hotelCard}/>
+                    })
+                  }
+                    
+                    
+                    
                     
                 </HotelStaysResult>
           </div>
@@ -134,7 +154,7 @@ export default function Index() {
             width: 100%;
             min-width: 280px;
             min-height: 100%;
-            padding: ${iPadPortrait ? '0px 7%' : '0px 12px'} ;
+            padding: 0px 12px ;
             position: relative;
             
            
@@ -143,6 +163,7 @@ export default function Index() {
       
 
         .pseudo__box {
+          display: none;
           position: fixed;
           left: 0;
           top: 0;
@@ -150,8 +171,28 @@ export default function Index() {
           height: 100%;
           min-height: 100vh;
           background: rgba(0,0,0,0.4);
-          display: ${ isDropDownSideBarOpen ? DesktopMedium ? 'block' : 'none' : 'none'};
           z-index: 50;
+        }
+
+        @media only screen and (min-width:760px) {
+          .content__container {
+           
+            padding: 0px 7% ;
+           
+            
+           
+        }
+
+       
+
+
+        }
+
+        @media only screen and (min-width: 1200px) {
+          .pseudo__box {
+            display: ${isDropDownSideBarOpen ? 'block' : 'none'};
+           }
+         
         }
         
         

@@ -1,10 +1,10 @@
 import React from 'react';
 import SearchBox from './SearchBox';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 
 const Header = (props) => {
 
-     var iPadPortrait = useMediaQuery('(min-width:760px)');
+    
     
     
     
@@ -12,10 +12,9 @@ const Header = (props) => {
         <React.Fragment>
             <header>
                 <img className="logo"src="/logo.svg" alt="logo of windbnb" />
-                <SearchBox 
+                <SearchBox
                     inHeader={true} 
-                    show={ !iPadPortrait ? false : true}
-                    openDropDownSideBarToggler = {props.openDropDownSideBarToggler}
+                    {...props}
                     />
             </header>
             <style jsx>{
@@ -27,8 +26,8 @@ const Header = (props) => {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    padding-top: ${ iPadPortrait ? '18px' : '0px'};
-                    padding-bottom: ${ iPadPortrait ? '65px' : '0px'};
+                    padding-top: 0px;
+                    padding-bottom: 0px;
                 }
 
                 .logo {
@@ -36,9 +35,17 @@ const Header = (props) => {
                     cursor: pointer;
                     
                 }
+
+                @media only screen and (min-width:760px) {
+                     
+                    header {
+                        padding-top: 18px;
+                        padding-bottom: 65px;
+                    }
+                  }
                 
-                `
-                }</style>
+                
+                `}</style>
         </React.Fragment>
     )
 }

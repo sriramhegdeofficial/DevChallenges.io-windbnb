@@ -13,6 +13,23 @@ import stays from './../stays.json';
 export default function Index() {
 
   
+  const getIndexOfHotelCard = (value) => {
+    if(value % 3 === 1) {
+        return 'right';
+    }else if(value % 3 === 2) {
+        return 'both';
+    }else {
+        return 'left';
+    }
+}
+
+const getIndexIfOnlyTwo = (value) => {
+   if(value % 3 === 2) {
+     return true;
+   }else {
+     return false;
+   }
+}
 
   const initialStaysList = (stay) => {
     return stay.city === 'Helsinki' && stay.country === 'Finland';
@@ -39,10 +56,10 @@ export default function Index() {
 
     setTotalGuests(adultPickerValue + childrenPickerValue);
     console.log(`dropdownValue : ${isDropDownSideBarOpen}`);
-
-
+    console.log(initialStays.length)
     
-  }, [adultPickerValue, childrenPickerValue, isDropDownSideBarOpen]);
+    
+  }, [adultPickerValue, childrenPickerValue, isDropDownSideBarOpen, initialStays]);
 
   const openDropDownSideBarToggler = () => {
      if(isDropDownSideBarOpen === true) {
@@ -150,8 +167,14 @@ export default function Index() {
                 <HotelStaysResult staysCount={initialStays.length}>
                   
                  {
-                    initialStays.map((hotelCard) => {
-                      return <HotelCard key={JSON.stringify(hotelCard)} hotelCard={hotelCard}/>
+                    initialStays.map((hotelCard, index) => {
+                      return <HotelCard 
+                      key={JSON.stringify(hotelCard)} 
+                      hotelCard={hotelCard}
+                      indexInString = { getIndexOfHotelCard(index + 1) } 
+                      getIndexIfOnlyTwo = { getIndexIfOnlyTwo(initialStays.length)
+                      }
+                      />
                     })
                   }
                     

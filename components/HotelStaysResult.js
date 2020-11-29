@@ -1,5 +1,5 @@
 import React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 
 
 const HotelStaysResult = (props) => {
@@ -78,7 +78,7 @@ const HotelStaysResult = (props) => {
                     
                     .hotel__card_wrapper {
                         flex-wrap: wrap;
-                        
+                        justify-content: space-between;
                     }
 
 

@@ -137,6 +137,8 @@ const HotelCard = (props) => {
                     .container {
                         max-width: 30%;
                         margin-bottom: 30px;
+                       
+                        
                         
                     }
                   }

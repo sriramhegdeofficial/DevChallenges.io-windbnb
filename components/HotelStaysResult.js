@@ -52,6 +52,7 @@ const HotelStaysResult = (props) => {
                     font-size: 1.125rem;
                     color: #333333;
                     text-transform: capitalize;
+                    display: ${props.staysCount > 0 ? 'flex' : 'none'};
                 }
 
                 .stays__count {

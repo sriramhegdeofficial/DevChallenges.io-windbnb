@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Layout from './../components/Layout';
 import Header from './../components/Header';
 import SearchBoxSm from '../components/SearchBoxSm';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import NoResultFound from '../components/NoResultFound';
 import HotelStaysResult from '../components/HotelStaysResult';
 import HotelCard from '../components/HotelCard';
 import DropDownSideBar from '../components/DropDownSideBar';
@@ -118,6 +118,44 @@ const getIndexIfOnlyTwo = (value) => {
     }
 }
   
+   const renderStaysHandler = () => {
+      if(initialStays.length > 0) {
+        return (
+          initialStays.map((hotelCard, index) => {
+                      
+                      
+            if(initialStays.length === (index + 1) && getIndexIfOnlyTwo(initialStays.length)) {
+              return (
+              <React.Fragment key={JSON.stringify(hotelCard)}>
+                  <HotelCard 
+                      hotelCard={hotelCard}
+                      pseudo={false}
+                    />
+                    <HotelCard 
+                      hotelCard={hotelCard}
+                      pseudo={true}
+                  /> 
+              </React.Fragment>
+              
+           
+
+              )
+            }else {
+              return (<HotelCard 
+              key={JSON.stringify(hotelCard)}         
+              hotelCard={hotelCard}
+              pseudo={false}
+              />)
+            }
+            
+          })
+        )
+      }else {
+        return (
+          <NoResultFound />
+        )
+      }
+   }
   
   return (
     <React.Fragment>
@@ -167,32 +205,7 @@ const getIndexIfOnlyTwo = (value) => {
                 <HotelStaysResult staysCount={initialStays.length}>
                   
                  {
-                    initialStays.map((hotelCard, index) => {
-                      if(initialStays.length === (index + 1) && getIndexIfOnlyTwo(initialStays.length)) {
-                        return (
-                        <React.Fragment key={JSON.stringify(hotelCard)}>
-                            <HotelCard 
-                                hotelCard={hotelCard}
-                                pseudo={false}
-                              />
-                              <HotelCard 
-                                hotelCard={hotelCard}
-                                pseudo={true}
-                            /> 
-                        </React.Fragment>
-                        
-                     
-
-                        )
-                      }else {
-                        return (<HotelCard 
-                        key={JSON.stringify(hotelCard)}         
-                        hotelCard={hotelCard}
-                        pseudo={false}
-                        />)
-                      }
-                      
-                    })
+                     renderStaysHandler()
                   }
                     
                     

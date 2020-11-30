@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import { makeStyles } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 
 
 
@@ -22,6 +22,10 @@ const useStyles = makeStyles({
 const HotelCard = (props) => {
     const classes = useStyles();
     
+
+    useEffect(() => {
+        console.log(props.pseudo);
+    },[]);
 
 
 
@@ -51,7 +55,10 @@ const HotelCard = (props) => {
                     display: flex;
                     flex-direction: column;
                     margin-bottom: 30px;
-
+                    visibility: ${props.pseudo ? 'hidden' : 'visible'};
+                    max-height: ${props.pseudo ? '0px' : 'auto'};
+                    overflow: hidden;
+                    pointer-events: ${props.pseudo ? 'none' : 'auto'};
                 }
                 
                 .hotel__image {

@@ -168,13 +168,30 @@ const getIndexIfOnlyTwo = (value) => {
                   
                  {
                     initialStays.map((hotelCard, index) => {
-                      return <HotelCard 
-                      key={JSON.stringify(hotelCard)} 
-                      hotelCard={hotelCard}
-                      indexInString = { getIndexOfHotelCard(index + 1) } 
-                      getIndexIfOnlyTwo = { getIndexIfOnlyTwo(initialStays.length)
+                      if(initialStays.length === (index + 1) && getIndexIfOnlyTwo(initialStays.length)) {
+                        return (
+                        <React.Fragment key={JSON.stringify(hotelCard)}>
+                            <HotelCard 
+                                hotelCard={hotelCard}
+                                pseudo={false}
+                              />
+                              <HotelCard 
+                                hotelCard={hotelCard}
+                                pseudo={true}
+                            /> 
+                        </React.Fragment>
+                        
+                     
+
+                        )
+                      }else {
+                        return (<HotelCard 
+                        key={JSON.stringify(hotelCard)}         
+                        hotelCard={hotelCard}
+                        pseudo={false}
+                        />)
                       }
-                      />
+                      
                     })
                   }
                     
